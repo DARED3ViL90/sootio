@@ -1,0 +1,462 @@
+# =============================================================================
+# SOOTIO - STREMIO DEBRID ADDON CONFIGURATION
+# =============================================================================
+# This file contains all configuration options for the Sootio addon.
+# Copy this file to .env and configure according to your needs.
+# =============================================================================
+
+# --- BASIC CONFIGURATION ---
+# Addon URL: The domain/URL where your addon is hosted (e.g., sooti.info or http://localhost:55771)
+ADDON_URL=https://sootio.vercel.app/
+
+# Server port (default: 55771)
+PORT=55771
+
+# Logging level (error, warn, info, debug)
+LOG_LEVEL=error
+
+# Debug logs for debrid services (true/false)
+DEBRID_DEBUG_LOGS=false
+RD_DEBUG_LOGS=false
+
+# --- METADATA PROVIDERS ---
+# TMDB API key (used as Cinemeta fallback). Get one at https://www.themoviedb.org/settings/api
+TMDB_API_KEY=363a9cb3d7844b158d01bf011b01d1c4
+# Enable TMDB fallback when Cinemeta is down (true/false)
+TMDB_FALLBACK_ENABLED=true
+
+# --- TORRENT SCRAPERS CONFIGURATION ---
+# Configure multiple torrent sources to search for content
+
+## Jackett (TorZNab API - multi-indexer support)
+JACKETT_ENABLED=true
+JACKETT_URL=YOUR_JACKETT_URL
+JACKETT_API_KEY=JACKETT_API_KEY
+
+# Custom HTML to display on the configuration page
+# This allows you to add custom branding, promotions, or information
+# Leave empty ("") to disable custom HTML
+# When adding HTML, ensure it's properly escaped and on a single line
+# Example usage:
+# CUSTOM_HTML="<div style='padding: 20px; text-align: center;'><h2>Welcome to My Addon</h2><p>Custom message here</p></div>"
+CUSTOM_HTML=""
+
+# Default debrid service provider (for new configurations)
+# Set to your preferred default service when users first configure the addon
+# Options: RealDebrid, TorBox, AllDebrid, Premiumize, OffCloud, DebriderApp, Usenet, HomeMedia, httpstreaming
+DEFAULT_DEBRID_SERVICE="RealDebrid"
+TORZNAB_LIMIT=100
+
+## Zilean (DMM hash database)
+ZILEAN_ENABLED=true
+ZILEAN_URL="https://zilean.elfhosted.com"
+ZILEAN_LIMIT=200
+
+## Torrentio (Stremio addon bridge)
+TORRENTIO_ENABLED=false
+TORRENTIO_URL="https://torrentio.strem.fun"
+
+## Comet (Debrid-optimized aggregator)
+COMET_ENABLED=false
+COMET_URL="https://comet.elfhosted.com"
+
+## StremThru (Premium torrent search)
+STREMTHRU_ENABLED=false
+STREMTHRU_URL="https://stremthru.elfhosted.com"
+
+## Bitmagnet (Self-hosted DHT crawler)
+BITMAGNET_ENABLED=false
+BITMAGNET_URL="BITMAGNET_URL"
+
+## Snowfl (Torrent search via snowfl-api)
+SNOWFL_ENABLED=false
+
+## 1337x (Direct HTML scraping)
+TORRENT_1337X_ENABLED=true
+TORRENT_1337X_URL="https://1337x.to"
+TORRENT_1337X_LIMIT=200
+TORRENT_1337X_MAX_PAGES=5
+
+## BTDigg (DHT search)
+BTDIG_ENABLED=true
+BTDIG_URL="https://btdig.com"
+BTDIG_LIMIT=50
+BTDIG_MAX_PAGES=5
+# Enable free rotating proxies to reduce blocking
+BTDIG_USE_PROXIES=false
+# Optional: force a specific proxy for BTDig (overrides BTDIG_USE_PROXIES)
+# Examples: socks5://host:1080, socks5h://host:1080, http://user:pass@host:8080
+BTDIG_PROXY_URL=""
+
+## MagnetDL (Direct HTML scraping)
+MAGNETDL_ENABLED=true
+MAGNETDL_URL="https://magnetdl.homes"
+MAGNETDL_LIMIT=200
+MAGNETDL_PROXY=""  # SOCKS5/HTTP proxy for bypassing Cloudflare (e.g. socks5://host:port)
+
+## TorrentGalaxy (Torrent aggregator)
+TORRENT_GALAXY_ENABLED=false
+TORRENT_GALAXY_URL="https://torrentgalaxy.space"
+
+## Torrent9 (French torrent site)
+TORRENT9_ENABLED=false
+TORRENT9_URL="https://www.torrent9.town"
+
+## Wolfmax4K (High-quality 4K content)
+WOLFMAX4K_ENABLED=false
+WOLFMAX4K_URL="https://wolfmax4k.com"
+
+## BluDV (Brazilian torrent site)
+BLUDV_ENABLED=false
+BLUDV_URL="https://bludv.net"
+BLUDV_LIMIT=50
+
+## Knaben (Torrent search engine)
+KNABEN_ENABLED=true
+KNABEN_URL="https://api.knaben.org"
+KNABEN_LIMIT=300
+
+## ExtTo (Torrent search engine - requires FlareSolverr for Cloudflare bypass)
+## Enabled by default, but requires FLARESOLVERR_URL to be set
+EXTTO_ENABLED=true
+EXTTO_URL="https://ext.to"
+EXTTO_LIMIT=200
+EXTTO_MAX_PAGES=2
+EXTTO_TIMEOUT=65000
+
+## TorrentDownload (Torrent search engine)
+## Enabled by default
+TORRENTDOWNLOAD_ENABLED=true
+TORRENTDOWNLOAD_URL="https://torrentdownload.info"
+TORRENTDOWNLOAD_LIMIT=100
+TORRENTDOWNLOAD_MAX_PAGES=2
+TORRENTDOWNLOAD_TIMEOUT=10000
+
+## IlCorsaroNero (Italian torrent site)
+ILCORSARONERO_ENABLED=false
+ILCORSARONERO_URL="https://ilcorsaronero.link"
+ILCORSARONERO_LIMIT=25
+ILCORSARONERO_TIMEOUT=15000
+ILCORSARONERO_DETAIL_CONCURRENCY=5
+
+## FlareSolverr (Cloudflare bypass service - required for ExtTo, optional for other scrapers)
+## See: https://github.com/FlareSolverr/FlareSolverr
+FLARESOLVERR_URL=
+## Optional upstream proxy for Solvearr/FlareSolverr requests (default path for non-shortlink domains)
+FLARESOLVERR_PROXY_URL=
+## Route shortlink/container domains (ouo/viewcrate/filecrypt) through a proxy in Solvearr
+## Default false to preserve previous behavior; set true to enable for OUO/ViewCrate/Filecrypt resolve chains.
+HTTP_FLARESOLVERR_PROXY_SHORTLINKS=false
+## Optional dedicated proxy for shortlink domains in Solvearr.
+HTTP_FLARESOLVERR_SHORTLINK_PROXY_URL=
+HUBCLOUD_FILENAME_EXTRACT_ENABLED=false
+DRIVESEED_TOKEN_POLL_ATTEMPTS=5
+DRIVESEED_TOKEN_POLL_DELAY_MS=3000
+UHDMOVIES_ZFILE_POLL_ATTEMPTS=15
+UHDMOVIES_ZFILE_POLL_DELAY_MS=5000
+
+## FlareSolverr Rate Limiting (protects against CPU overload)
+## Max concurrent FlareSolverr requests (default: 2)
+FLARESOLVERR_MAX_CONCURRENT=2
+## Max requests in queue before rejecting (default: 10)
+FLARESOLVERR_QUEUE_MAX_DEPTH=10
+## Failures before circuit breaker trips (default: 3)
+FLARESOLVERR_CIRCUIT_THRESHOLD=3
+## Circuit breaker reset time in ms (default: 120000 = 2 min)
+FLARESOLVERR_CIRCUIT_RESET_MS=120000
+## Max FlareSolverr requests per IP per hour (default: 30)
+FLARESOLVERR_PER_IP_HOURLY_LIMIT=30
+## Cookie cache TTL in ms (default: 1800000 = 30 min)
+FLARESOLVERR_COOKIE_TTL_MS=1800000
+
+## MKVCinemas
+## MKVCinemas is often protected by a JS anti-bot page (HTTP 202 + /min.js).
+## Enable FlareSolverr fallback to execute the JS when direct requests are blocked.
+MKVCINEMAS_FLARESOLVERR_ENABLED=true
+MKVCINEMAS_FLARESOLVERR_TIMEOUT=45000
+
+## Global Scraper Settings
+SCRAPER_TIMEOUT=5000
+HTTP_STREAMS_STARTUP_HEALTHCHECK_ENABLED=true
+
+# --- HTTP STREAMING PROVIDERS ---
+# Direct HTTP streaming link providers (configured via UI, not env vars)
+# Supported providers: 4KHDHub, HDHub4u, UHDMovies, MoviesDrive, MKVCinemas, MalluMv, CineDoze, VixSrc, MoviesMod, MoviesLeech, AnimeFlix, 111477, XDMovies
+
+# UHDMovies specific settings
+UHDMOVIES_PROXY_URL=
+UHDMOVIES_REQUEST_TIMEOUT=10000
+UHDMOVIES_REQUEST_MAX_RETRIES=3
+UHDMOVIES_REQUEST_RETRY_DELAY=1000
+UHDMOVIES_DOMAIN_TIMEOUT=5000
+UHDMOVIES_DOMAIN_MAX_RETRIES=3
+UHDMOVIES_DOMAIN_RETRY_DELAY=2000
+UHDMOVIES_DOMAIN_CACHE_TTL=86400000
+UHDMOVIES_VALIDATION_TIMEOUT=3000
+
+# XDMovies API settings
+XDMOVIES_API_BASE_URL=https://xdmovies-api.hdmovielover.workers.dev
+XDMOVIES_SEARCH_CACHE_TTL=900000
+XDMOVIES_DETAIL_CACHE_TTL=600000
+XDMOVIES_PAGE_CACHE_TTL=600000
+XDMOVIES_MAX_SEARCH_PAGES=80
+XDMOVIES_MAX_TMDB_SCAN_PAGES=160
+XDMOVIES_PAGE_BATCH_SIZE=8
+
+# HTTP streaming validation settings
+DISABLE_URL_VALIDATION=false
+DISABLE_SEEK_VALIDATION=false
+HTTP_TIMEOUT=5000
+HTTP_RESOLVE_TIMEOUT=10000
+DOMAIN_CACHE_TTL_MS=900000
+
+# --- QUALITY & FILTERING SETTINGS ---
+# Control which torrents are prioritized and filtered
+
+## Quality Tier Skipping
+PRIORITY_SKIP_WEBRIP_ENABLED=true
+PRIORITY_SKIP_AAC_OPUS_ENABLED=true
+
+## Per-Quality Result Limits
+MAX_RESULTS_REMUX=2
+MAX_RESULTS_BLURAY=2
+MAX_RESULTS_WEBDL=2
+MAX_RESULTS_WEBRIP=1
+MAX_RESULTS_AUDIO=1
+MAX_RESULTS_OTHER=10
+
+## Codec Diversity (balance H.264 vs H.265)
+DIVERSIFY_CODECS_ENABLED=true
+MAX_H265_RESULTS_PER_QUALITY=2
+MAX_H264_RESULTS_PER_QUALITY=2
+
+## Global Limits & Exit Conditions
+TARGET_CODEC_COUNT=10
+
+# --- SEASON PACK HANDLING ---
+# Configure how season packs are inspected for TV shows
+MAX_PACKS_TO_INSPECT=6
+MAX_PACK_ROUNDS=2
+
+# --- DEBRID SERVICES RATE LIMITS ---
+# Configure API rate limits and concurrency for debrid providers
+# NOTE: Rate limits are PER API TOKEN (per user), not global
+
+## Real-Debrid
+RD_RATE_PER_MINUTE=250
+# Increased default from 10 to 30 for better multi-user support
+# Since rate limit is per token, higher concurrency is safe
+RD_CONCURRENCY=30
+RD_PERSONAL_CACHE_TTL_MINUTES=5
+RD_MAX_RETRIES=3
+
+## All-Debrid
+AD_RATE_PER_MINUTE=600
+AD_RATE_PER_SECOND=12
+AD_CONCURRENCY=50
+AD_MAX_RETRIES=5
+# Number of parallel hash checks (upload → check → delete)
+# Higher = faster but uses more API calls. Recommended: 10-20
+AD_CHECK_CONCURRENCY=10
+
+# --- PROXY CONFIGURATION ---
+# Optional proxy for debrid services, scrapers, and streaming
+
+# Default proxy URL (HTTP/HTTPS/SOCKS5) - applies to all services if not overridden
+# Examples:
+#   WARP in Docker:  DEBRID_HTTP_PROXY=socks5h://warp:1080
+#   WARP on host:    DEBRID_HTTP_PROXY=socks5h://127.0.0.1:1080
+#   HTTP proxy:      DEBRID_HTTP_PROXY=http://proxy:8080
+# Note: Use socks5h:// (not socks5://) to resolve hostnames through the proxy
+DEBRID_HTTP_PROXY=
+
+# Per-service proxy configuration (optional, overrides default proxy for specific services)
+# Format: "service1:proxy_url,service2:proxy_url"
+# Available services: realdebrid, alldebrid, torbox, premiumize, offcloud, debriderapp, usenet, homemedia, httpstreams, scrapers, and individual scrapers (e.g., thepiratebay, torrentgalaxy, jackett)
+# Examples:
+#   DEBRID_PER_SERVICE_PROXIES=realdebrid:socks5://user:pass@proxy:1080,torbox:socks5://proxy2:1080
+#   DEBRID_PER_SERVICE_PROXIES=realdebrid:socks5h://warp:1080,alldebrid:socks5://proxy:1080
+#   DEBRID_PER_SERVICE_PROXIES=thepiratebay:socks5h://warp:1080                        # Target a single scraper
+# Note: Services not listed will use the default proxy (if configured) or no proxy
+DEBRID_PER_SERVICE_PROXIES=
+
+# Services to use the default proxy (comma-separated) - only used if no per-service proxy is configured
+# Available: realdebrid, alldebrid, torbox, premiumize, offcloud, debrider, scrapers, httpstreams, and individual scrapers (e.g., thepiratebay)
+# Examples:
+#   DEBRID_PROXY_SERVICES=*:true                              (proxy everything with default proxy)
+#   DEBRID_PROXY_SERVICES=realdebrid:true,alldebrid:true      (only debrid services with default proxy)
+#   DEBRID_PROXY_SERVICES=scrapers:true,httpstreams:true      (only scrapers and streaming with default proxy)
+#   DEBRID_PROXY_SERVICES=thepiratebay:true                   (only this scraper uses the default proxy)
+DEBRID_PROXY_SERVICES=*:false
+
+# --- CLUSTERING & PERFORMANCE ---
+# Multi-worker process configuration for high-load scenarios
+
+# Number of worker processes (default: 10, max: 32, auto-capped to CPU cores)
+# Use with: npm run start (uses cluster mode by default)
+# For single process: npm run standalone
+MAX_WORKERS=10
+
+# UV thread pool size for better I/O performance (default: 4)
+UV_THREADPOOL_SIZE=128
+
+# HTTP server settings
+HTTP_KEEPALIVE_TIMEOUT=65000
+HTTP_HEADERS_TIMEOUT=72000
+HTTP_TIMEOUT=120000
+
+# HTTP server limits for multi-user support
+# Increased from 200 to 500 for better scalability
+# Each user typically uses 1-2 concurrent connections
+HTTP_MAX_CONNECTIONS=500
+HTTP_MAX_HEADERS_COUNT=50
+
+# --- MONGODB CACHE ---
+# Optional persistent cache for magnet availability across providers
+# Highly recommended for multi-user scenarios and better performance
+
+MONGO_CACHE_ENABLED=false
+
+# MongoDB connection string
+# Examples:
+#   Local:         mongodb://localhost:27017
+#   Remote:        mongodb://user:pass@your-server.com:27017
+#   MongoDB Atlas: mongodb+srv://user:pass@cluster.mongodb.net/
+MONGO_URI=mongodb://localhost:27017
+
+# Database and collection names
+MONGO_DB_NAME=sootio
+MONGO_CACHE_COLLECTION=magnet_cache
+
+# Cache TTL in days (entries auto-expire via TTL index)
+MONGO_CACHE_TTL_DAYS=180
+
+# Force cleanup of duplicate entries on startup (performance impact)
+MONGO_FORCE_CLEANUP=false
+
+# --- CACHE BACKEND ---
+# Cache backend: sqlite (default) or postgres
+CACHE_BACKEND=sqlite
+
+# --- POSTGRES CACHE ---
+# Optional shared cache for multi-instance deployments
+# Use either POSTGRES_URL/DATABASE_URL or the discrete settings below
+POSTGRES_URL=
+DATABASE_URL=
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+POSTGRES_DB=sootio
+POSTGRES_USER=sootio
+POSTGRES_PASSWORD=sootio
+POSTGRES_SSL=false
+
+# --- SQLITE CACHE ---
+# Optional persistent cache for magnet availability using SQLite
+# Alternative to MongoDB - more lightweight and file-based
+# Highly recommended if not using MongoDB
+
+SQLITE_CACHE_ENABLED=true
+
+# Cache TTL in days (entries auto-expire)
+SQLITE_CACHE_TTL_DAYS=180
+
+# --- DEBUG LOGS ---
+# Enable detailed logging for various components
+
+# Debug logs for debrid services (true/false)
+DEBRID_DEBUG_LOGS=false
+RD_DEBUG_LOGS=false
+
+# Debug logs for SQLite cache operations (true/false)
+# When enabled, provides detailed information about SQLite operations
+SQLITE_DEBUG_LOGS=false
+DEBUG_SQLITE=false
+
+# Debug setting to disable the "no video indicators" filter for testing purposes
+# When true, bypasses video indicator validation and allows all torrents to pass through
+DISABLE_VIDEO_INDICATOR_FILTER=false
+
+# --- USENET CONFIGURATION ---
+# Optional Usenet support via Newznab indexers and SABnzbd
+# Note: Usenet services are configured via the UI, not environment variables
+
+# File server for progressive Usenet streaming
+USENET_FILE_SERVER_URL=http://localhost:8765
+USENET_FILE_SERVER_API_KEY=your_api_key_here
+
+# --- CACHE CONFIGURATION ---
+# Control caching behavior for various components
+
+# Scraper result caching
+SCRAPER_CACHE_TTL_MOVIE_MIN=360
+SCRAPER_CACHE_TTL_SERIES_MIN=60
+SCRAPER_CACHE_LIMIT=5000
+
+# Parse-torrent-title cache
+PTT_CACHE_LIMIT=10000
+
+# General cache settings
+CACHE_MAX_AGE=60
+DISABLE_CACHE=false
+
+# --- EARLY RETURN SETTINGS ---
+# Early return is disabled by default; set DISABLE_EARLY_RETURN=false to enable.
+DISABLE_EARLY_RETURN=true
+EARLY_RETURN_TIMEOUT_MS=2500
+EARLY_RETURN_MIN_STREAMS=1
+
+# Per-service early return overrides
+# Provider keys are uppercased with non-alphanumeric characters replaced by underscores.
+# Examples: RealDebrid -> REALDEBRID, DebriderApp -> DEBRIDERAPP, httpstreaming -> HTTPSTREAMING
+# EARLY_RETURN_DISABLE_EASYNEWS=true
+# EARLY_RETURN_TIMEOUT_MS_EASYNEWS=6000
+# EARLY_RETURN_DISABLE_DEBRIDERAPP=true
+# EARLY_RETURN_TIMEOUT_MS_REALDEBRID=2500
+
+# --- ADVANCED SETTINGS ---
+# Additional configuration options for fine-tuning
+
+# Request retry settings
+REQUEST_TIMEOUT=30000
+REQUEST_MAX_RETRIES=3
+REQUEST_RETRY_DELAY=1000
+HUBCLOUD_USER_AGENT=Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:140.0) Gecko/20100101 Firefox/140.0
+
+# Admin token for protected endpoints (optional)
+ADMIN_TOKEN=
+
+# Host binding (default: 0.0.0.0)
+HOST=0.0.0.0
+
+# --- MEMORY OPTIMIZATION SETTINGS ---
+# Configure memory limits and batch sizes to prevent out-of-memory errors
+# These settings are especially important when processing large batches of episodes
+
+# HubCloud link processing limits
+# Maximum number of download buttons to process per page (default: 15)
+MAX_HUBCLOUD_BUTTONS=15
+
+# Maximum number of links to validate for 206 support (default: 10)
+MAX_HUBCLOUD_VALIDATIONS=10
+
+# 4KHDHub stream processing limits
+# Maximum number of working links to collect (default: 15)
+MAX_4KHDHUB_LINKS=15
+
+# Maximum number of links to process before stopping (default: 30)
+MAX_4KHDHUB_PROCESS=30
+
+# Batch size for parallel link extraction (default: 4)
+# Lower values use less memory but may be slower
+BATCH_SIZE=4
+
+# Preview mode settings
+# Maximum number of preview links in lazy-load mode (default: 25)
+MAX_4KHDHUB_PREVIEW_LINKS=25
+
+# Validation settings
+# Disable URL validation to save memory (default: false)
+DISABLE_4KHDHUB_URL_VALIDATION=false
+
+# Disable seek validation (206 support check) to save memory (default: false)
+DISABLE_4KHDHUB_SEEK_VALIDATION=false
