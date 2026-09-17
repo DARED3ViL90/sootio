@@ -29,8 +29,7 @@ COPY . .
 
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
-ENV PORT=55771
 
-EXPOSE 55771
+EXPOSE 7000
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "standalone"]
